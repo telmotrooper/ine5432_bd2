@@ -1,0 +1,12 @@
+<start T1>
+<start T2>
+<write T1, x, 1, 7>
+<start T3>
+<write T2, x, 7, 70>
+<commit T1>
+<start T4>
+<write T3, x, 70, 700>
+<write T3, y, 10, 100>
+<write T4, y, 100, 55>
+<commit T4>
+<write T2, y, 55, 550>
