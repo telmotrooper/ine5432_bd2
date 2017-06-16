@@ -2,7 +2,7 @@ import os
 
 class Parser():
     def __init__(self, file=None):
-        if not None:
+        if not file:
             file = '{0}/arquivos/input.txt'.format(os.getcwd())
 
         self.file = open(file,'r')
