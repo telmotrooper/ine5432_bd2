@@ -1,9 +1,10 @@
 import random
 from random import randint
 
-class Gerador():
+
+class Gerador:
     def __init__(self):
-        self.list = ['A','B','C','D','E','F','G']
+        self.list = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     def gerar(self):
         """
@@ -16,10 +17,10 @@ class Gerador():
         try:
             x = random.choice(self.list)
             self.list.remove(x)
-            l = [x,randint(0,100)]
+            l = [x, randint(0, 100)]
             return l
-        except:
-            print("Sem mais variaveis na lista")
+        except IndexError:
+            print("Sem mais variáveis na lista.")
 
     def add(self, v):
         """

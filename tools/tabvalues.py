@@ -1,7 +1,7 @@
 from tabulate import tabulate
 
-class Tabvalues(object):
 
+class Tabvalues(object):
     def __init__(self):
         self.table = {
         'A':{'banco': 0, 'esperado':0},
@@ -16,9 +16,9 @@ class Tabvalues(object):
     def show(self):
         tab = []
         for key, value in sorted(self.table.items()):
-            tab.append([key, value['banco'],value['esperado']])
+            tab.append([key, value['banco'], value['esperado']])
 
-        headers = ["Variavel", "Banco", "Valor"]
+        headers = ["Variável", "Atual", "Esperado"]
         out = tabulate(tab, headers, numalign="center", tablefmt='psql')
         print(out)
         return out

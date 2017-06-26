@@ -17,14 +17,14 @@ class Thre (threading.Thread):
         if not k:
             return
         t = 'T' + str(self.num)
-        self.core.lis_transacoes.update({t:[k[0],self.core.tab.atual(k[0]),k[1]]})
+        self.core.lis_transacoes.update({t: [k[0], self.core.tab.atual(k[0]),k[1]]})
 
-        time.sleep(randint(0,3))
-        self.core.logger.new_line(['s',t])
+        time.sleep(randint(0, 3))
+        self.core.logger.new_line(['s', t])
         self.core.active_tran.append(t)
         time.sleep(randint(0,3))
-        self.core.logger.new_line(['w',t,k[0],self.core.tab.atual(k[0]),k[1]])
+        self.core.logger.new_line(['w', t, k[0], self.core.tab.atual(k[0]) ,k[1]])
         time.sleep(randint(0,3))
-        self.core.logger.new_line(['c',t,k[0],k[1]])
+        self.core.logger.new_line(['c', t, k[0], k[1]])
         self.core.active_tran.remove(t)
         self.core.gerador.add(k[0])
