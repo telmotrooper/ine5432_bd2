@@ -72,8 +72,8 @@ class Logger:
         c = randint(0, 100)
         if c <= self.prob:
             self.crash_flag = 1
-            print("Algo inesperado aconteceu!")
-            print("O banco pode estar inconsistente")
+            # print("Ocorreu um crash no banco de dados.")
+            print("Devido a um crash, o banco pode estar inconsistente.\n")
             self.tab.show()
             arch = open(self.dir, 'a')
             arch.write("{0}Crash!{1}\n".format('*'*5, '*'*5))

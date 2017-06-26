@@ -11,7 +11,7 @@ class Core:
         self.gerador = Gerador()
         self.tab = Tabvalues()
         self.active_tran = []
-        self.lis_transacoes = {} # {T:[VARIAVEL,VALOR ANT, VALOR DP]}
+        self.lis_transacoes = {}  # {T:[VARIAVEL,VALOR ANT, VALOR DP]}
         self.logger = Logger(self.tab, self)
 
     def transacoes(self):
@@ -21,7 +21,7 @@ class Core:
             self.get_transacao()
             if self.logger.crash_flag == 1:
                 return
-            t = Thre(self,x)
+            t = Thre(self, x)
             t.start()
             x += 1
 

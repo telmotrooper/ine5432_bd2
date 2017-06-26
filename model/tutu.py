@@ -14,7 +14,7 @@ class Tutu(threading.Thread):
 
     def run(self):
         while True :
-            if randint(0,3) == 1:
+            if randint(0, 3) == 1:
                 self.stopit()
 
             print('a')

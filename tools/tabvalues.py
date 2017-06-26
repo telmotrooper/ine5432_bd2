@@ -18,7 +18,7 @@ class Tabvalues(object):
         for key, value in sorted(self.table.items()):
             tab.append([key, value['banco'], value['esperado']])
 
-        headers = ["Variavel", "Banco", "Valor"]
+        headers = ["Variável", "Atual", "Esperado"]
         out = tabulate(tab, headers, numalign="center", tablefmt='psql')
         print(out)
         return out

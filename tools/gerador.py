@@ -20,7 +20,7 @@ class Gerador:
             l = [x, randint(0, 100)]
             return l
         except:
-            print("Sem mais variaveis na lista")
+            print("Sem mais variáveis na lista.")
 
     def add(self, v):
         """
