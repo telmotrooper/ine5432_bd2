@@ -19,7 +19,7 @@ class Gerador:
             self.list.remove(x)
             l = [x, randint(0, 100)]
             return l
-        except:
+        except IndexError:
             print("Sem mais variáveis na lista.")
 
     def add(self, v):

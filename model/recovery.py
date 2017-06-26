@@ -11,7 +11,7 @@ class Recovery:
 
     def start(self):
         time.sleep(2)
-        print("Iniciando processo de recuperação...")
+        print("Iniciando processo de recuperação...\n")
         start_time = time.time()
         # self.core.logger.add_line('Starting Recovery....\n')
         self.clean_list()
@@ -25,10 +25,11 @@ class Recovery:
                 self.recovery_write(self.lis[x])
 
         self.start_redo()
+        print("Estado do banco após recovery")
         self.core.tab.show()
         exec_time = time.time()-start_time
 
-        print("Tempo de execução do recovery: %.2f segundos" % exec_time)
+        print("Tempo de execução do recovery: %.2f segundos\n" % exec_time)
 
     def clean_list(self):
         for x in range(0,len(self.lis)):

@@ -4,7 +4,7 @@ from random import randint
 
 class Logger:
     def __init__(self, tab,core, prob=None):
-        self.dir = '{0}/arquivos/output.txt'.format(os.getcwd())
+        self.dir = '{0}/arquivos/log.txt'.format(os.getcwd())
         self.crash_flag = 0
         self.tab = tab
         self.core = core
@@ -72,8 +72,10 @@ class Logger:
         c = randint(0, 100)
         if c <= self.prob:
             self.crash_flag = 1
-            # print("Ocorreu um crash no banco de dados.")
-            print("Devido a um crash, o banco pode estar inconsistente.\n")
+            print("Devido a um crash, o banco pode estar inconsistente.")
+            print("Verifique o log.txt para mais informações.\n")
+
+            print("Estado atual do banco")
             self.tab.show()
             arch = open(self.dir, 'a')
             arch.write("{0}Crash!{1}\n".format('*'*5, '*'*5))

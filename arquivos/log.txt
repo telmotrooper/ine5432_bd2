@@ -1,0 +1,11 @@
+<start T2>
+<start T1>
+<write T2,D,0,63>
+<commit T2>
+<start T3>
+<checkpoint T1>
+*****Crash!*****
+<start T2>
+<write T2,D,0,63>
+<commit T2>
+<start T4>
