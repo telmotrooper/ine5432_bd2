@@ -27,13 +27,13 @@ class Recovery:
             if 'write' in self.lis[x]:
                 self.recovery_write(self.lis[x])
 
-            # if 'checkpoint' in self.list[x]:
-            #     self.checkpoint(self.list[x])
-            #     x = len(self.lis + 1)
+            if 'checkpoint' in self.lis[x]:
+                self.checkpoint(self.lis[x], x)
+                x = len(self.lis)+1
 
             x += 1
 
-        self.start_redo()
+        # self.start_redo()
         print("Estado do banco após recovery")
         self.core.tab.show()
         exec_time = time.time()-start_time
@@ -53,6 +53,8 @@ class Recovery:
         self.comitted.reverse()
         for req in self.comitted:
             line = [req]
+            # print(line)
+            # print(self.redo)
             line.extend(self.redo[req])
             time.sleep(0.5)
             self.core.logger.new_line(['s', line[0]], True)
@@ -65,5 +67,35 @@ class Recovery:
             self.redo.update({line[0]: line[1::]})
         else:
             self.core.logger.new_line(['s', line[0]], True)
-            self.core.logger.new_line(['w', line[0], line[1], line[2], line[2]],True)
+            self.core.logger.new_line(['w', line[0], line[1], line[2], line[2]], True)
             self.core.logger.new_line(['c', line[0], line[1], line[2], line[2]], True)
+
+    def checkpoint(self, line, pos):
+        # print(line)
+        tr = line.split('<checkpoint ')[1].split('>')[0].split(',')
+        # print(tr)
+        pos+=1
+        while pos < len(self.lis) and tr:
+            if self.is_transaction_listed(tr, self.lis[pos]):
+                if 'commit' in self.lis[pos]:
+                    self.register_commit(self.lis[pos])
+
+                elif 'write' in self.lis[pos]:
+                    self.recovery_write(self.lis[pos])
+
+                elif 'start' in self.lis[pos]:
+                    k = self.lis[pos].split('<start ')[1].split('>')[0]
+                    if k in tr:
+                        # print("K: {0}".format(k))
+                        tr.remove(k)
+            pos+=1
+        # print(self.comitted)
+        self.start_redo()
+
+    def is_transaction_listed(self, l, line):
+        for t in l:
+            if t in line:
+                return True
+
+        return False
+
