@@ -17,12 +17,21 @@ class Recovery:
         self.clean_list()
         # print(self.lis)
         # print(self.transacoes)
-        for x in range(0, len(self.lis)):
+
+        x = 0
+
+        while x < len(self.lis):
             if 'commit' in self.lis[x]:
                 self.register_commit(self.lis[x])
 
             if 'write' in self.lis[x]:
                 self.recovery_write(self.lis[x])
+
+            # if 'checkpoint' in self.list[x]:
+            #     self.checkpoint(self.list[x])
+            #     x = len(self.lis + 1)
+
+            x += 1
 
         self.start_redo()
         print("Estado do banco após recovery")
@@ -50,7 +59,7 @@ class Recovery:
             self.core.logger.new_line(['w', line[0], line[1], line[2], line[3]], True)
             self.core.logger.new_line(['c', line[0], line[1], line[3]], True)
 
-    def recovery_write(self, line):
+    def recovery_write(self, line):  # UNDO
         line = line.split('<write ')[1].split('>')[0].split(',')
         if line[0] in self.comitted:
             self.redo.update({line[0]: line[1::]})
