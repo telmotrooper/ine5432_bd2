@@ -55,11 +55,14 @@ class Recovery:
             line = [req]
             # print(line)
             # print(self.redo)
-            line.extend(self.redo[req])
-            time.sleep(0.5)
-            self.core.logger.new_line(['s', line[0]], True)
-            self.core.logger.new_line(['w', line[0], line[1], line[2], line[3]], True)
-            self.core.logger.new_line(['c', line[0], line[1], line[3]], True)
+            try:
+                line.extend(self.redo[req])
+                time.sleep(0.5)
+                self.core.logger.new_line(['s', line[0]], True)
+                self.core.logger.new_line(['w', line[0], line[1], line[2], line[3]], True)
+                self.core.logger.new_line(['c', line[0], line[1], line[3]], True)
+            except ValueError:
+                pass
 
     def recovery_write(self, line):  # UNDO
         line = line.split('<write ')[1].split('>')[0].split(',')
