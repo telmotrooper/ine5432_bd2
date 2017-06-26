@@ -1,7 +1,8 @@
-import sys
+# import sys
+# import time
 import threading
-import time
 from random import randint
+
 
 class Tutu(threading.Thread):
     """Thread class with a stop() method. The thread itself has to check
@@ -12,7 +13,7 @@ class Tutu(threading.Thread):
         self._stopper = threading.Event()
 
     def run(self):
-        while(True):
+        while True :
             if randint(0,3) == 1:
                 self.stopit()
 
